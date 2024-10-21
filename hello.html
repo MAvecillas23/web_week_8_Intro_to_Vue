@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+<!--  vue will manage all html here -->
+  <h1>Hello Vue!</h1>
+
+<!--  holds where the message will be displayed on webpage -->
+  <p> {{ messageWithExclamationPoints }} </p>
+
+<!--  v-on button when clicked... calls the addExclamationPoints function -->
+  <button v-on:click="addExclamationPoints">Add Exclamation Points</button>
+  <button v-on:click="clearExclamationPoints">Clear Exclamation Points</button>
+
+</div>
+
+
+
+
+<script>
+  // set up vue app
+  // creating the vue app object
+  const { createApp, ref, computed } = Vue
+
+  // setting up the vue app
+  createApp({
+    setup() {
+      // define things the vue app needs here
+
+      // create a variable with a message
+      const message = ref('Hi')
+
+
+      const numberOfExclamationPoints = ref(0)
+
+
+      function addExclamationPoints() {
+        if (numberOfExclamationPoints.value < 10) {
+          numberOfExclamationPoints.value++
+
+        } else {
+          alert('No more exclamation points!')
+        }
+      }
+
+      // clear exclamation point
+      function clearExclamationPoints() {
+
+        numberOfExclamationPoints.value = 0  // reset number value back to 1
+      }
+
+
+      const messageWithExclamationPoints = computed(function() {
+        let computedMessage = message.value
+        // add ! based on numberOfExclamationPoints
+        for (let x=0; x < numberOfExclamationPoints.value; x++) {
+          computedMessage = computedMessage + '!'
+        }
+        return computedMessage
+      })
+
+
+
+      return {
+        message,      // return message to html
+        addExclamationPoints,
+        numberOfExclamationPoints,
+        clearExclamationPoints,
+        messageWithExclamationPoints
+
+
+      }
+    }
+  }).mount('#app')  // this connects the vue app to the html above
+
+</script>
+
+</body>
+</html>

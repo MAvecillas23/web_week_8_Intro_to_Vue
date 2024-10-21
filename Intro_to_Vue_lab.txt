@@ -1,0 +1,5 @@
+Intro to Vue Lab:
+
+Q2: A "total" property is being used in the html template but hasn't been created or returned in the Vue script code. Ignoring this warning message means that the "total" property won't be able to be accessed. If it's a variable, won't be displayed or if it's a function, can't be called. To fix this issue, if you know you already defined a total variable or created a function, check for any spelling errors and correct them. If you haven't created a total variable/ function, create one. Also make sure you include "total" in your return object in your Vue script code.
+
+

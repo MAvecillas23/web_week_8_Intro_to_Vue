@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Price</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <style>
+    th, td {
+      width: 25%;
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+
+<div id="app">
+<!--  a table that holds item name, price quantity and total -->
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Unit Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+
+    <tr>
+      <td>{{name}}</td>
+      <td>{{unitPrice}}</td>
+<!--     user input quantity of an item-->
+      <td><input type="number" v-model="quantity"></td>
+<!--      calling the total function to get the total of an item -->
+      <td>{{total}}</td>
+    </tr>
+
+  </table>
+
+
+</div>
+
+<script>
+  // setting up vue app
+  const { createApp, ref, computed } = Vue
+  createApp({
+    // all js code goes here
+    setup() {
+
+      const name = ref('Hat')
+      const quantity = ref(1)
+      const unitPrice = ref(4.99)
+
+
+      const total = computed(function(){
+        const totalPrice = quantity.value * unitPrice.value
+        const formattedPrice = totalPrice.toFixed(2)
+
+        return formattedPrice
+      })
+
+
+
+      return {
+        // make sure all functions and variables being used in html template is added here
+        name,
+        quantity,
+        unitPrice,
+        total
+      }
+
+    }
+  }).mount('#app')
+</script>
+
+</body>
+</html>

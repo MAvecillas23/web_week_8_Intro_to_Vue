@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello Vue Forms</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+
+  <h1>Enter your name: </h1>
+  <label>Please enter your name: </label>
+
+<!--  v-model reacts to when a name is entered in the input-->
+  <input v-model="name">
+
+<!--  v-if reacts... this paragraph pops up on webpage if name is entered-->
+  <p v-if="name">Thanks, your name is {{ name }}</p>
+
+<!--  v-else... acts as an else statement for the if statement above-->
+  <p v-else>Awaiting user input</p>
+
+  <button v-on:click="clearName">Clear Name</button>
+
+
+
+</div>
+
+
+<script>
+  // setting up vue app
+  const { createApp, ref } = Vue
+  createApp({
+    // all js code goes here
+    setup() {
+
+      const name = ref('')  // empty string
+
+      function clearName() {
+        name.value = ''
+
+      }
+
+
+      return {
+        // make sure all functions and variables being used in html is added here
+        name,
+        clearName
+
+      }
+
+    }
+  }).mount('#app')
+</script>
+
+</body>
+</html>
